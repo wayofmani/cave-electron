@@ -3,6 +3,10 @@ const path = require('node:path');
 // const { JSDOM } = require( "jsdom" );
 // const { window } = new JSDOM( "" );
 // const $ = require( "jquery" )( window );
+const { autoUpdater, AppUpdater} = require("electron-updater")
+
+autoUpdater.autoDownload = false;
+autoUpdater.autoInstallOnAppQuit = true;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -18,6 +22,7 @@ const createWindow = () => {
     icon: __dirname + '/fav-ico.png',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      devTools: false
     },
   });
 
@@ -41,6 +46,8 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+
+  autoUpdater.checkForUpdates();
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common

@@ -9,18 +9,33 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
+    "build": "electron-builder",
     "lint": "echo \"No linting configured\""
   },
-  "build":{
-    "appId":"org.bettercallus.www",
-    "productName":"Cave",
-    "win":{
-      "target": "nsls"
+  "publish": {
+    "repository": "https://github.com/wayofmani/cave-electron.git",
+    "releaseType": "release"
+  },
+  "build": {
+    "appId": "org.bettercallus.www",
+    "productName": "Cave",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "fav-icon.png"
     },
-    "directories":{
-      "output":"dist"
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "fav-icon.png",
+      "uninstallerIcon": "fav-icon.png",
+      "uninstallerDisplayName": "Why you leave me? :(",
+      "license": "licence.md",
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "output": "dist"
     }
-
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
@@ -31,10 +46,12 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
     "@electron-forge/plugin-fuses": "^7.4.0",
     "@electron/fuses": "^1.8.0",
-    "electron": "31.1.0"
+    "electron": "31.1.0",
+    "electron-builder": "^20.44.4",
+    "electron-squirrel-startup": "^1.0.0"
   },
   "keywords": [],
-  "author": "Mani Jalilzadeh",
+  "author": "ManiJalilzadeh",
   "license": "MIT",
   "dependencies": {
     "@material/button": "^14.0.0",
